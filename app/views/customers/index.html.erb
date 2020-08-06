@@ -1,0 +1,23 @@
+<div class="row add-button">
+  <%= link_to "Add New Customer", new_customer_path, class: "btn btn-primary" %>
+</div>
+<div class="row">
+  <table class="table table-sm table-hover">
+    <thead class="thead-dark">
+      <th>#</th>
+      <th>顧客名</th>
+      <th>メールアドレス</th>
+      <th>送付先住所</th>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
+      <tr>
+        <td><%= link_to customer.id, edit_customer_path(customer.id) %></td>
+        <td><%= customer.name %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.address %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

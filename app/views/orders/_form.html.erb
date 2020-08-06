@@ -1,0 +1,57 @@
+<%= form_with(model: @order, local: true) do |form| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@order.errors.count, "error") %>
+        以下のエラーによりSaveできませんでした:
+      </h2>
+      <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>ID: <%= @order.id %></p>
+
+  <p>
+    <%= form.label "受注番号" %><br>
+    <%= form.number_field :order_number %>
+  </p>
+
+  <p>
+    <%= form.label "顧客名" %><br>
+    <%= form.collection_select :customer_id, Customer.all, :id, :name, {:class=>'custom-select'} %>
+  </p>
+
+  <p>
+    <%= form.label "受注日" %><br>
+    <%= form.date_field :order_date %>
+  </p>
+
+  <p>
+    <%= form.label "支払日" %><br>
+    <%= form.date_field :payment_date %>
+  </p>
+
+  <p>
+    <%= form.label "GST" %><br>
+    <%= form.number_field :gst %>
+  </p>
+
+  <p>
+    <%= form.label "PST" %><br>
+    <%= form.number_field :pst %>
+  </p>
+
+  <p>
+    <%= form.label "合計" %><br>
+    <%= form.number_field :total %>
+  </p>
+
+  <p>
+    <%= form.submit "Save", class: "btn btn-primary" %>
+  </p>
+<% end %>
+<%= link_to "Back", orders_path %>

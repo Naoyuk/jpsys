@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-2 order-header">
+    <%= render 'form' %>
+  </div>
+
+  <div class="col-md-9 offset-md-1 order-list-items">
+    <%= link_to "Add New List", new_list_path, order_id: @order.id, class: "btn btn-primary" %>
+    <table class="table table-sm table-hover">
+      <thead>
+        <th>品名</th>
+        <th>単価</th>
+        <th>数量</th>
+        <th>割引</th>
+        <th>小計</th>
+      </thead>
+      <tbody>
+        <% @lists.each do |li| %>
+        <tr>
+          <td><%= li.item.name %></td>
+          <td><%= li.list_price %></td>
+          <td><%= li.amount %></td>
+          <td><%= li.discount %></td>
+          <td><%= li.list_price * li.amount - li.discount %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

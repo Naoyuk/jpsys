@@ -1,0 +1,23 @@
+<div class="row add-button">
+  <%= link_to "Add New Item", new_item_path, class: "btn btn-primary" %>
+</div>
+<div class="row">
+  <table class="table table-sm table-hover">
+    <thead class="thead-dark">
+      <th>#</th>
+      <th>商品名</th>
+      <th>単価</th>
+      <th>在庫数</th>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+      <tr>
+        <td><%= link_to item.id, edit_item_path(item.id) %></td>
+        <td><%= item.name %></td>
+        <td><%= item.price %></td>
+        <td><%= item.stock %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

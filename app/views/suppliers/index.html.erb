@@ -1,0 +1,25 @@
+<div class="row add-button">
+  <%= link_to "Add New Supplier", new_supplier_path, class: "btn btn-primary" %>
+</div>
+<div class="row">
+  <table class="table table-sm table-hover">
+    <thead class="thead-dark">
+      <th>#</th>
+      <th>仕入先名</th>
+      <th>メールアドレス</th>
+      <th>代表者名</th>
+      <th>住所</th>
+    </thead>
+    <tbody>
+      <% @suppliers.each do |supplier| %>
+      <tr>
+        <td><%= link_to supplier.id, edit_supplier_path(supplier.id) %></td>
+        <td><%= supplier.name %></td>
+        <td><%= supplier.email %></td>
+        <td><%= supplier.representative %></td>
+        <td><%= supplier.address %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

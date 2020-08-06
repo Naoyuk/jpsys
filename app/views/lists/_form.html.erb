@@ -1,0 +1,44 @@
+<%= form_with(model: @list, local: true) do |form| %>
+  <% if @list.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@list.errors.count, "error") %>
+        Saveできませんでした:
+      </h2>
+      <ul>
+        <% @list.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label "order_id" %><br>
+    <%= form.number_field :order_id %>
+  </p>
+
+  <p>
+    <%= form.label "品名" %><br>
+    <%= form.collection_select :item_id, Item.all, :id, :name, {:class=>'custom-select'} %>
+  </p>
+
+  <p>
+    <%= form.label "数量" %><br>
+    <%= form.number_field :amount %>
+  </p>
+
+  <p>
+    <%= form.label "単価" %><br>
+    <%= form.number_field :list_price %>
+  </p>
+
+  <p>
+    <%= form.label "割引" %><br>
+    <%= form.number_field :discount %>
+  </p>
+
+  <p>
+    <%= form.submit "Save", class: "btn btn-primary" %>
+  </p>
+<% end %>

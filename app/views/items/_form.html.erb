@@ -1,0 +1,35 @@
+<%= form_with(model: @item, local: true) do |form| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@item.errors.count, "error") %>
+        Saveできませんでした:
+      </h2>
+      <ul>
+        <% @item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label "商品名" %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label "価格" %><br>
+    <%= form.number_field :price %>
+  </p>
+
+  <p>
+    <%= form.label "在庫数" %><br>
+    <%= form.number_field :stock %>
+  </p>
+
+  <p>
+    <%= form.submit "Save", class: "btn btn-primary" %>
+  </p>
+<% end %>
+<%= link_to "Back", items_path %>

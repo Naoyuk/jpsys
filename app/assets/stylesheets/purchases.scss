@@ -1,0 +1,16 @@
+// Place all the styles related to the purchases controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.group-devider {
+  border-bottom: solid 1px #ddd;
+  padding: 10px;
+}
+
+.group-devider-last {
+  padding: 10px;
+}
+
+.unpaid {
+  background-color: #fffcc9;
+}

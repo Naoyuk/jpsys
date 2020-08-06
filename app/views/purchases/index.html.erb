@@ -1,0 +1,35 @@
+<div class="row add-button">
+  <%= link_to "新しい発注", new_purchase_path, {class: "btn btn-primary"} %>
+</div>
+<div class="row">
+  <table class="table table-hover">
+    <thead class="thead-sm">
+      <th>ID</th>
+      <th>仕入先</th>
+      <th>商品名</th>
+      <th>個数</th>
+      <th>合計</th>
+      <th>CAD</th>
+      <th>JPY</th>
+      <th>為替レート</th>
+      <th>発注日</th>
+      <th>支払日</th>
+    </thead>
+    <tbody>
+      <% @purchases.each do |p| %>
+      <tr class="<%= unpaid(p.payment_date) %>">
+        <td><%= link_to p.id, edit_purchase_path(p.id) %></td>
+        <td><%= p.supplier.name %></td>
+        <td><%= p.item_name %></td>
+        <td><%= p.amount %></td>
+        <td><%= p.price %></td>
+        <td><%= p.cad %></td>
+        <td><%= p.jpy %></td>
+        <td><%= p.exchangerate %></td>
+        <td><%= p.order_date %></td>
+        <td><%= p.payment_date %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,42 @@
+<%= form_with(model: @supplier, local: true) do |form| %>
+  <% if @supplier.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@supplier.errors.count, "error") %>
+        Saveできませんでした:
+      </h2>
+      <ul>
+        <% @supplier.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>ID: <%= @supplier.id %></p>
+
+  <p>
+    <%= form.label "仕入先名" %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label "メールアドレス" %><br>
+    <%= form.text_field :email %>
+  </p>
+
+  <p>
+    <%= form.label "代表者名" %><br>
+    <%= form.text_field :representative %>
+  </p>
+
+  <p>
+    <%= form.label "住所" %><br>
+    <%= form.text_field :address %>
+  </p>
+
+  <p>
+    <%= form.submit "Save", class: "btn btn-primary" %>
+  </p>
+<% end %>
+<%= link_to "Back", suppliers_path %>
