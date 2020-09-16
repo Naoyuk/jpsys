@@ -8,7 +8,7 @@
       <th>仕入先</th>
       <th>商品名</th>
       <th>個数</th>
-      <th>合計</th>
+      <th>合計(CAD)</th>
       <th>CAD</th>
       <th>JPY</th>
       <th>為替レート</th>
@@ -22,7 +22,7 @@
         <td><%= p.supplier.name %></td>
         <td><%= p.item_name %></td>
         <td><%= p.amount %></td>
-        <td><%= p.price %></td>
+        <td><strong><%= p.price %></strong></td>
         <td><%= p.cad %></td>
         <td><%= p.jpy %></td>
         <td><%= p.exchangerate %></td>
