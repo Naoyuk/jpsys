@@ -1,6 +1,9 @@
 class OrdersController < ApplicationController
   def index
     @orders = Order.all.order(order_number: "DESC")
+    @total_order = @orders.sum(:total)
+    @total_purchase = Purchase.all.sum(:price)
+    @profit = @total_order - @total_purchase
   end
 
   def show
@@ -32,6 +35,15 @@ class OrdersController < ApplicationController
       redirect_to orders_path
     else
       render 'edit'
+    end
+  end
+
+  def destroy
+    @order = Order.find(params[:id])
+    if @order.destroy
+      redirect_to orders_path
+    else
+      render 'show'
     end
   end
 
