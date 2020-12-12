@@ -4,7 +4,7 @@
   </div>
 
   <div class="col-md-9 offset-md-1 order-list-items">
-    <%= link_to "Add New List", new_list_path, order_id: @order.id, class: "btn btn-primary" %>
+    <%= link_to "Add New List", new_list_path(order_id: @order.id), class: "btn btn-primary" %>
     <table class="table table-sm table-hover">
       <thead>
         <th>品名</th>

@@ -1,4 +1,4 @@
-<%= form_with(model: @list, local: true) do |form| %>
+<%= form_for @list do |form| %>
   <% if @list.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -14,8 +14,7 @@
   <% end %>
 
   <p>
-    <%= form.label "order_id" %><br>
-    <%= form.number_field :order_id %>
+    <%= form.hidden_field :order_id, :value => @list.order_id %>
   </p>
 
   <p>
