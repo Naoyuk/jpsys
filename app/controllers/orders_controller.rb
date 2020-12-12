@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   def index
     @orders = Order.all.order(order_number: "DESC")
-    @total_order = @orders.sum(:total)
-    @total_purchase = Purchase.all.sum(:price)
+    @total_order = @orders.total_order
+    @total_purchase = Purchase.total_purchase
     @profit = @total_order - @total_purchase
   end
 

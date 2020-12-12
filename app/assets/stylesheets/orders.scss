@@ -5,3 +5,17 @@
 .bold {
     font-weight: bold;
 }
+
+.orderTableHeader {
+    display: inline-block;
+}
+
+.orderTableHeader span{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.red {
+    color: tomato;
+}

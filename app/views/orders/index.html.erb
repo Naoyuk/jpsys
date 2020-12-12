@@ -1,11 +1,16 @@
-<div class="row add-button">
-  <%= link_to "Add New Order", new_order_path, class: "btn btn-primary" %>
-</div>
-
-<div class="row">
-  <p>合計支出: <%= @total_order %></p>
-  <p>合計収入: <%= @total_purchase %></p>
-  <p>総利益: <%= @profit %></p>
+<div class="row orderTableHeader">
+  <div class="col-sm-3 add-button">
+    <%= link_to "Add New Order", new_order_path, class: "btn btn-primary" %>
+  </div>
+  <div class="col-sm-3 od">
+    <p>収益<span>$<%= @total_order %></span></p>
+  </div>
+  <div class="col-sm-3 pc">
+    <p>支払<span class="red">$<%= @total_purchase %></span></p>
+  </div>
+  <div class="col-sm-3 profit">
+    <p>合計収支<span class="<%= 'red' if @profit < 0 %>">$<%= @profit %></span></p>
+  </div>
 </div>
 
 <div class="row">
