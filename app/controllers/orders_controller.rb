@@ -32,6 +32,7 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
+    @order.total = @order.total()
     if @order.update(order_params)
       redirect_to orders_path
     else

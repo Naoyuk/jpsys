@@ -28,7 +28,11 @@
       <% @orders.each do |order| %>
       <tr>
         <td><%= link_to order.order_number, order %></td>
+        <% begin %>
         <td><%= order.customer.name %></td>
+        <% rescue %>
+        <td></td>
+        <% end %>
         <td><%= order.order_date %></td>
         <td><%= order.payment_date %></td>
         <td><%= order.gst %></td>
