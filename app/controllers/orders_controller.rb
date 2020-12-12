@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @lists = List.where(order_id: @order.id)
+    @total = @order.total
   end
 
   def new

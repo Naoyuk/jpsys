@@ -1,6 +1,13 @@
 <div class="row add-button">
   <%= link_to "Add New Order", new_order_path, class: "btn btn-primary" %>
 </div>
+
+<div class="row">
+  <p>合計支出: <%= @total_order %></p>
+  <p>合計収入: <%= @total_purchase %></p>
+  <p>総利益: <%= @profit %></p>
+</div>
+
 <div class="row">
   <table class="table table-hover">
     <thead class="thead-dark">
