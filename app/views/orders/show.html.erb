@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col-md-2 order-header">
     <%= render 'form' %>
+    <div>
+      <button class="btn btn-danger"><%= link_to 'Delete', "/orders/#{@order.id}", method: :delete, data: {confirm: "Are you sure to delete this order?"} %></button>
+    </div>
   </div>
 
   <div class="col-md-9 offset-md-1 order-list-items">
