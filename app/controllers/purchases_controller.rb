@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PurchasesController < ApplicationController
   def index
-    @purchases = Purchase.all.order(created_at: "DESC")
+    @purchases = Purchase.all.order(created_at: 'DESC')
   end
 
   def new
@@ -29,12 +31,12 @@ class PurchasesController < ApplicationController
     end
   end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 
   def purchase_params
-    params.require(:purchase).permit(:supplier_id, :item_name, :amount, :price, :cad, :jpy, :payment_method, :note, :order_date, :payment_date, :exchangerate)
+    params.require(:purchase).permit(:supplier_id, :item_name, :amount, :price, :cad, :jpy, :payment_method, :note,
+                                     :order_date, :payment_date, :exchangerate)
   end
 end

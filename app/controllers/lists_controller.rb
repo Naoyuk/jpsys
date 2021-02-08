@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ListsController < ApplicationController
   def new
     @list = List.new(order_id: params[:order_id])
@@ -13,14 +15,11 @@ class ListsController < ApplicationController
     end
   end
 
-  def update
-  end
+  def update; end
 
-  def edit
-  end
+  def edit; end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 

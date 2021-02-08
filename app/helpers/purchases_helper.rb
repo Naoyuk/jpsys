@@ -1,7 +1,7 @@
+# frozen_string_literal: true
+
 module PurchasesHelper
   def unpaid(payment_date)
-    if payment_date == nil
-      return "unpaid"
-    end
+    return 'unpaid' if payment_date.nil?
   end
 end

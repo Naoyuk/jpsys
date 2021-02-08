@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ItemsController < ApplicationController
   def index
     @items = Item.all
@@ -29,9 +31,9 @@ class ItemsController < ApplicationController
       render 'edit'
     end
   end
-  
 
   private
+
   def item_params
     params.require(:item).permit(:name, :price, :stock)
   end

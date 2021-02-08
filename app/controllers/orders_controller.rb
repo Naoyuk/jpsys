@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
   def index
-    @orders = Order.all.order(order_number: "DESC")
+    @orders = Order.all.order(order_number: 'DESC')
     @total_order = @orders.total_order
     @total_purchase = Purchase.total_purchase
     @profit = BigDecimal(@total_order.to_s) - BigDecimal(@total_purchase.to_s)
@@ -32,7 +34,7 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.total = @order.total()
+    @order.total = @order.total
     if @order.update(order_params)
       redirect_to orders_path
     else
@@ -49,8 +51,8 @@ class OrdersController < ApplicationController
     end
   end
 
-
   private
+
   def order_params
     params.require(:order).permit(:order_number, :customer_id, :order_date, :payment_date, :gst, :pst, :total)
   end

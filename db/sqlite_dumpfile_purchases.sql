@@ -1,0 +1,11 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "purchases" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "supplier_id" integer, "item_name" varchar, "amount" integer, "price" float, "cad" float, "jpy" integer, "payment_method" varchar, "note" text, "order_date" date, "payment_date" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "exchangerate" float);
+INSERT INTO purchases VALUES(1,2,'Hosting service etc',1,80.930000000000006819,107.34000000000000341,9246,'PayPal(楽天)',replace(replace('- Domain Registration jpgoodsonline.com\r\n- Premium Shared Hosting\r\n- Setup\r\n- SSL Certificate Activation\r\n- Cloudflare Protection\r\nTotal Amount 80.93 USD','\r',char(13)),'\n',char(10)),'2020-01-13','2020-01-13','2020-08-05 19:31:21.928430','2020-08-06 00:43:25.970835',84.019999999999996024);
+INSERT INTO purchases VALUES(2,3,'Blog Spam Filtering Subscription',1,16.199999999999999289,16.199999999999999289,NULL,'TD Credit Card','Expires: January 20, 2021','2020-01-20','2020-01-20','2020-08-05 20:33:14.104373','2020-08-05 21:20:09.526473',NULL);
+INSERT INTO purchases VALUES(3,4,'Discount Sticker',100,37.0,37.0,3222,'PayPal(楽天)','','2020-01-25','2020-01-25','2020-08-05 20:40:20.466868','2020-08-06 00:39:14.145151',79.200000000000002841);
+INSERT INTO purchases VALUES(4,5,'Business Card',200,40.0,40.0,NULL,'TD Credit Card','','2020-01-27','2020-01-27','2020-08-05 20:47:55.400097','2020-08-05 20:47:55.400097',NULL);
+INSERT INTO purchases VALUES(5,1,'fluffy20(L)',20,600.0,146.52000000000001023,12000,'PayPal(RBC)',replace(replace('内訳\r\nfluffy20(L) 20個 12000円（170.54CAD）\r\nfluffy20(S) 20個 0円（0CAD）\r\nラベル印刷代等 7000円（84.87）\r\n送料 11000円（133.37CAD）\r\n\r\n合計30000円（366.54CAD）','\r',char(13)),'\n',char(10)),'2020-01-11','2020-02-03','2020-08-05 20:51:42.254393','2020-08-06 00:37:49.701202',81.900000000000005686);
+INSERT INTO purchases VALUES(6,5,'Flyer',50,37.5,37.5,NULL,'PayPal(RBC)','','2020-02-02','2020-02-02','2020-08-05 21:21:23.628084','2020-08-05 21:40:29.780818',NULL);
+INSERT INTO purchases VALUES(7,1,'fluffy20(L)',30,600.0,NULL,NULL,'',replace(replace('内訳\r\nfluffy20(L) 30個（18000円）\r\n送料（15000円）','\r',char(13)),'\n',char(10)),'2020-07-29',NULL,'2020-08-06 00:22:10.650334','2020-08-06 00:22:10.650334',NULL);
+COMMIT;

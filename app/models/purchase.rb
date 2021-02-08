@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class Purchase < ApplicationRecord
   belongs_to :supplier
 
   def self.total_purchase
-    self.sum(:price)
+    sum(:price)
   end
 end
