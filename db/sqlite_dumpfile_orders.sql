@@ -1,6 +1,6 @@
-PRAGMA foreign_keys=OFF;
+serial foreign_keys=OFF;
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "orders" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "order_number" integer, "customer_id" integer, "gst" float, "pst" float, "total" float, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "order_date" date, "payment_date" date);
+CREATE TABLE IF NOT EXISTS "orders" ("id" serial PRIMARY KEY NOT NULL, "order_number" integer, "customer_id" integer, "gst" float, "pst" float, "total" float, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "order_date" date, "payment_date" date);
 INSERT INTO orders VALUES(1,3775,1,NULL,NULL,144.0,'2020-08-04 10:06:37.561401','2020-08-04 18:50:27.620686','2020-02-19','2020-03-14');
 INSERT INTO orders VALUES(2,3776,3,NULL,NULL,20.0,'2020-08-04 10:10:23.564307','2020-08-04 10:10:23.564307','2020-05-27','2020-05-27');
 INSERT INTO orders VALUES(3,3777,4,NULL,NULL,20.0,'2020-08-04 10:10:55.418615','2020-08-04 10:10:55.418615','2020-05-28','2020-05-29');

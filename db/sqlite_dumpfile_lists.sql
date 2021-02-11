@@ -1,6 +1,6 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "lists" ("id" integer NOT NULL PRIMARY KEY, "order_id" integer DEFAULT NULL, "item_id" integer DEFAULT NULL, "amount" integer DEFAULT NULL, "list_price" integer DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "discount" integer DEFAULT 0);
+CREATE TABLE IF NOT EXISTS "lists" ("id" serial NOT NULL PRIMARY KEY, "order_id" integer DEFAULT NULL, "item_id" integer DEFAULT NULL, "amount" integer DEFAULT NULL, "list_price" integer DEFAULT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "discount" integer DEFAULT 0);
 INSERT INTO lists VALUES(1,1,1,6,20,'2020-08-04 18:34:52.508160','2020-08-04 18:47:30.114855',0);
 INSERT INTO lists VALUES(2,1,2,6,4,'2020-08-04 18:49:58.085255','2020-08-04 18:49:58.085255',0);
 INSERT INTO lists VALUES(3,2,1,1,20,'2020-08-05 03:24:08.776565','2020-08-05 03:25:10.992466',0);
