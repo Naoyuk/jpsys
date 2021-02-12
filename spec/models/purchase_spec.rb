@@ -9,15 +9,15 @@ RSpec.describe Purchase, type: :model do
 
   it "is valid with supplier_id, item_name, amount, price, cad, jpy, payment_method, note, order_date, payment_date, and exchangerate" do
     @purchase.item_name = "test"
-    @purchase.amount = "test"
-    @purchase.price = "test"
-    @purchase.cad = "test"
-    @purchase.jpy = "test"
+    @purchase.amount = 5
+    @purchase.price = 15
+    @purchase.cad = 15
+    @purchase.jpy = 1200
     @purchase.payment_method = "test"
     @purchase.note = "test"
-    @purchase.order_date = "test"
-    @purchase.payment_date = "test"
-    @purchase.exchangerate = "test"
+    @purchase.order_date = Date.today
+    @purchase.payment_date = Date.today
+    @purchase.exchangerate = 1.23
     expect(@purchase).to be_valid
   end
   
