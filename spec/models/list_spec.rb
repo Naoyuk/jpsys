@@ -27,7 +27,7 @@ RSpec.describe List, type: :model do
   it "is invalid without item_id" do
     @list.item_id = nil
     @list.valid?
-    expect(@list.errors[:item_id]).to include("Item can't be blank")
+    expect(@list.errors[:item_id]).to include("cannot be blank")
   end
 
   it "is invalid without amount" do
@@ -41,4 +41,43 @@ RSpec.describe List, type: :model do
     @list.valid?
     expect(@list.errors[:list_price]).to include("can't be blank")
   end
+
+  it "is invalid if amount = -1" do
+    @list.amount = -1
+    @list.valid?
+    expect(@list.errors[:amount]).to include("must be greater than 0")
+  end
+
+  it "is invalid if amount = 0" do
+    @list.amount = 0
+    @list.valid?
+    expect(@list.errors[:amount]).to include("must be greater than 0")
+  end
+
+  it "is valid if amount = 1" do
+    @list.item_id = @item.id
+    @list.amount = 1
+    @list.list_price = 15
+    expect(@list).to be_valid
+  end
+
+  it "is invalid if list_price = -1" do
+    @list.list_price = -1
+    @list.valid?
+    expect(@list.errors[:list_price]).to include("must be greater than 0")
+  end
+
+  it "is invalid if list_price = 0" do
+    @list.list_price = 0
+    @list.valid?
+    expect(@list.errors[:list_price]).to include("must be greater than 0")
+  end
+
+  it "is valid if list_price = 1" do
+    @list.item_id = @item.id
+    @list.amount = 1
+    @list.list_price = 1
+    expect(@list).to be_valid
+  end
+
 end
