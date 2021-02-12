@@ -19,9 +19,9 @@ RSpec.describe Supplier, type: :model do
   end
 
   it "is invalid without a representative" do
-    supplier = Supplier.new(reqresentative: nil)
+    supplier = Supplier.new(representative: nil)
     supplier.valid?
-    expect(supplier.errors[:reqresentative]).to include("can't be blank")
+    expect(supplier.errors[:representative]).to include("can't be blank")
   end
 
   it "is invalid without an email" do
@@ -33,7 +33,7 @@ RSpec.describe Supplier, type: :model do
   it "is invalid with a duplicated email address" do
     Supplier.create(
       name: "test",
-      reqresentative: "test rep",
+      representative: "test rep",
       email: "test@example.com"
     )
     supplier = Supplier.new(
