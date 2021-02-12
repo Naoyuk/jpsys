@@ -29,4 +29,62 @@ RSpec.describe Order, type: :model do
     expect(@order.errors[:order_date]).to include("can't be blank")
   end
 
+  it "calculate total order price" do
+    item1 = Item.create(
+      name: 'test',
+      price: 10,
+      stock: 10
+    )
+    item2 = Item.create(
+      name: 'test',
+      price: 13,
+      stock: 10
+    )
+
+    @order.order_number = '123'
+    @order.order_date = Date.today
+    @order.save
+
+    other_order = @customer.orders.build(
+      order_number: '124',
+      order_date: Date.today
+    )
+    other_order.save
+
+    main_order_list1 = @order.lists.build(
+      item_id: item1.id,
+      amount: 2,
+      list_price: 10,
+      discount: 0
+    )
+    main_order_list1.save
+
+    main_order_list2 = @order.lists.build(
+      item_id: item2.id,
+      amount: 3,
+      list_price: 13,
+      discount: 0
+    )
+    main_order_list2.save
+
+    other_order_list1 = other_order.lists.build(
+      item_id: item1.id,
+      amount: 1,
+      list_price: 10,
+      discount: 0
+    )
+    other_order_list1.save
+
+    other_order_list2 = other_order.lists.build(
+      item_id: item2.id,
+      amount: 4,
+      list_price: 13,
+      discount: 0
+    )
+    other_order_list2.save
+
+    orders = Order.all
+    expect(@order.total + other_order.total).to eq 121
+  end
+
 end
