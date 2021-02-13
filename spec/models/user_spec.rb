@@ -49,4 +49,29 @@ RSpec.describe User, type: :model do
     end
   end
 
+  it "is invalid without a password" do
+    @user.password = @user.password_confirmation = nil
+    expect(@user).to_not be_valid
+  end
+
+  it "is invalid with a password blank" do
+    @user.password = @user.password_confirmation = " " * 6
+    expect(@user).to_not be_valid
+  end
+
+  it "is invalid with a password less than 6 letters" do
+    @user.password = @user.password_confirmation = "a" * 5
+    expect(@user).to_not be_valid
+  end
+
+  it "is valid with a password 6 letters" do
+    @user.password = @user.password_confirmation = "a" * 6
+    expect(@user).to be_valid
+  end
+
+  it "is valid with a password more than 6 letters" do
+    @user.password = @user.password_confirmation = "a" * 7
+    expect(@user).to be_valid
+  end
+
 end
