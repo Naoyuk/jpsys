@@ -83,8 +83,12 @@ RSpec.describe Order, type: :model do
     )
     other_order_list2.save
 
-    orders = Order.all
-    expect(orders.total + other_order.total).to eq 121
+    expect(Order.total_order).to eq 121
+
+    # orders = Order.all
+    # expect(orders.total).to eq 121
+    
+    # expect(Order.total).to eq 121
   end
 
 end
