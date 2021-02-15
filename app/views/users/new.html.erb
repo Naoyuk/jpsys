@@ -1,0 +1,32 @@
+<% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
+
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-lg-6 align-self-center">
+    <%= form_with(model: @user, local: true) do |f| %>
+      <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
+
+      <div>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
+
+      <div>
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+
+      <%= f.submit "Create Account", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+  </div>
+</div>
