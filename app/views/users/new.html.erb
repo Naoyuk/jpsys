@@ -5,6 +5,8 @@
   <div class="row justify-content-md-center">
     <div class="col-lg-6 align-self-center">
     <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'shared/error_messages' %>
+
       <div>
         <%= f.label :name %>
         <%= f.text_field :name %>
