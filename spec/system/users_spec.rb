@@ -18,6 +18,9 @@ RSpec.describe "Users", type: :system do
       click_button "Sign up"
     }.to change(User, :count).by(1)
 
+    expect(page).to have_content "Successfully signed in!"
+    expect(current_path).to eq root_path
+
   end
 
   scenario "fail signs up with invalid information and redirect to new user path" do
