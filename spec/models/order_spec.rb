@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-
   before do
     @customer = Customer.create(
       name: 'test',
@@ -11,25 +12,25 @@ RSpec.describe Order, type: :model do
     @order = @customer.orders.build
   end
 
-  it "is valid with an order number and order date" do
+  it 'is valid with an order number and order date' do
     @order.order_number = '123'
     @order.order_date = Date.today
     expect(@order).to be_valid
   end
 
-  it "is invalid without order number" do
+  it 'is invalid without order number' do
     @order.order_number = nil
     @order.valid?
     expect(@order.errors[:order_number]).to include("can't be blank")
   end
 
-  it "is invalid without order date" do
+  it 'is invalid without order date' do
     @order.order_date = nil
     @order.valid?
     expect(@order.errors[:order_date]).to include("can't be blank")
   end
 
-  it "calculate total order price" do
+  it 'calculate total order price' do
     item1 = Item.create(
       name: 'test',
       price: 10,
@@ -87,8 +88,7 @@ RSpec.describe Order, type: :model do
 
     # orders = Order.all
     # expect(orders.total).to eq 121
-    
+
     # expect(Order.total).to eq 121
   end
-
 end
