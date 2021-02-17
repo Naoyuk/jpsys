@@ -5,17 +5,18 @@ require 'rails_helper'
 RSpec.describe 'Users', type: :system do
   before do
     driven_by(:rack_test)
+    @user = FactoryBot.build(:user)
   end
 
-  scenario 'successfully signs up and got email and redirect to root path' do
+  scenario 'successfully signs up and redirect to root path' do
     visit new_user_path
     click_link 'Sign up'
 
     expect do
-      fill_in 'Name', with: 'test'
-      fill_in 'Email', with: 'test@example.com'
-      fill_in 'Password', with: 'foobar'
-      fill_in 'Password Confirmation', with: 'foobar'
+      fill_in 'Name', with: @user.name
+      fill_in 'Email', with: @user.email
+      fill_in 'Password', with: @user.password
+      fill_in 'Password Confirmation', with: @user.password_confirmation
       click_button 'Sign up'
     end.to change(User, :count).by(1)
 
@@ -28,9 +29,9 @@ RSpec.describe 'Users', type: :system do
     click_link 'Sign up'
 
     expect do
-      fill_in 'Name', with: 'test'
-      fill_in 'Email', with: 'test@example.com'
-      fill_in 'Password', with: 'foobar'
+      fill_in 'Name', with: @user.name
+      fill_in 'Email', with: @user.email
+      fill_in 'Password', with: @user.password
       fill_in 'Password Confirmation', with: 'barbaz'
       click_button 'Sign up'
     end.to change(User, :count).by(0)

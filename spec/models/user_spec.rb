@@ -24,16 +24,16 @@ RSpec.describe User, type: :model do
   end
 
   it 'is invalid with a duplicate email address' do
-    FactoryBot.create(:user, email: 'test@example.com')
+    FactoryBot.create(:user, email: 'test1@example.com')
     @user.email = 'test@example.com'
     @user.valid?
     expect(@user.errors[:email]).to include('has already been taken')
   end
 
   it 'is invalid with a same but upcase or downcase' do
-    @user.email = 'Test@eXamPLe.CoM'
+    @user.email = 'Test1@eXamPLe.CoM'
     @user.save
-    expect(@user.email).to eq 'test@example.com'
+    expect(@user.email).to eq 'test1@example.com'
   end
 
   it 'is valid with a valid email address' do
