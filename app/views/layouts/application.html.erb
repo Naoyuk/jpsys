@@ -37,9 +37,28 @@
           <li class="nav-item<%= active_nav_item("suppliers") %>">
             <%= link_to "仕入先管理", suppliers_path, class: "nav-link" %>
           </li>
+          <% if logged_in? %>
+          <li class="nav-item dropdown my-2 my-lg-0">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Account <b class="caret"></b>
+            </button>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Profile", current_user, class: "dropdown-item" %></li>
+              <li><%= link_to "Settings", '#', class: "dropdown-item" %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item" %>
+              </li>
+            </ul>
+          </li>
+          <% else %>
+          <li class="nav-item">
+            <%= link_to "Log in", login_path, class: "nav-link" %>
+          </li>
           <li class="nav-item">
             <%= link_to "Sign up", new_user_path, class: "nav-link" %>
           </li>
+          <% end %>
         </ul>
       </div>
     </nav>

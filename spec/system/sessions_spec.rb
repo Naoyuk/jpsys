@@ -21,6 +21,11 @@ RSpec.describe 'Sessions', type: :system do
     it 'log in with valid email address and password' do
       expect(page).to have_content 'Successfully logged in!'
       expect(page).to have_current_path root_path
+      visit root_path
+      expect(page).to_not have_content 'Successfully logged in!'
+      expect(page).to have_content 'Log out'
+      expect(page).to_not have_content 'Sign up'
+      expect(page).to_not have_content 'Log in'
     end
   end
 
@@ -36,6 +41,11 @@ RSpec.describe 'Sessions', type: :system do
     it 'log in with invalid email address' do
       expect(page).to have_content 'Invalid email/password combination'
       expect(page).to have_current_path '/login'
+      visit root_path
+      expect(page).to_not have_content 'Invalid email/password combination'
+      expect(page).to have_content 'Sign up'
+      expect(page).to have_content 'Log in'
+      expect(page).to_not have_content 'Log out'
     end
   end
 
@@ -51,6 +61,11 @@ RSpec.describe 'Sessions', type: :system do
     it 'log in with invalid password' do
       expect(page).to have_content 'Invalid email/password combination'
       expect(page).to have_current_path '/login'
+      visit root_path
+      expect(page).to_not have_content 'Invalid email/password combination'
+      expect(page).to have_content 'Sign up'
+      expect(page).to have_content 'Log in'
+      expect(page).to_not have_content 'Log out'
     end
   end
 end
