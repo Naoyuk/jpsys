@@ -7,22 +7,16 @@ class Order < ApplicationRecord
   belongs_to :customer, optional: true
   has_many :lists, dependent: :destroy
 
-  def self.total_order
-    # sum(:total)
+  def total
+    lists.to_a.sum { |list| list.subtotal }
+  end
+
+  def self.total_sales
     orders = Order.all
     sum = 0
     orders.each do |order|
-      order.lists.each do |list|
-        sum += list.list_price * list.amount
-      end
+      sum += order.total
     end
-    sum
-  end
-
-  def total
-    sum = 0
-    lists = Order.all.lists
-    lists.each { |li| sum += li.list_price * li.amount }
     sum
   end
 end

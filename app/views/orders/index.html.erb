@@ -3,10 +3,10 @@
     <%= link_to "Add New Order", new_order_path, class: "btn btn-primary" %>
   </div>
   <div class="col-sm-3 od">
-    <p>収益<span>$<%= @total_order %></span></p>
+    <p>売上<span>$<%= @total_sales %></span></p>
   </div>
   <div class="col-sm-3 pc">
-    <p>支払<span class="red">$<%= @total_purchase %></span></p>
+    <p>支出<span class="red">$<%= @total_purchase %></span></p>
   </div>
   <div class="col-sm-3 profit">
     <p>合計収支<span class="<%= 'red' if @profit < 0 %>">$<%= @profit %></span></p>
@@ -20,8 +20,6 @@
       <th>顧客名</th>
       <th>受注日</th>
       <th>支払日</th>
-      <th>GST</th>
-      <th>PST</th>
       <th>合計</th>
     </thead>
     <tbody>
@@ -35,8 +33,6 @@
         <% end %>
         <td><%= order.order_date %></td>
         <td><%= order.payment_date %></td>
-        <td><%= order.gst %></td>
-        <td><%= order.pst %></td>
         <td><%= order.total %></td>
       </tr>
       <% end %>
