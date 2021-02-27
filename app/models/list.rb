@@ -1,5 +1,19 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: lists
+#
+#  id             :integer          not null, primary key
+#  order_id       :integer          not null
+#  item_id        :integer          not null
+#  amount         :integer          not null
+#  list_price     :integer
+#  discount       :integer          default: 0
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 class List < ApplicationRecord
   validates :item_id, presence: true
   validate do |list|

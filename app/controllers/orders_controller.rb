@@ -16,6 +16,12 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    if Order.last
+      new_number = Order.last.order_number + 1
+    else
+      new_number =3001
+    end
+    @order.order_number = new_number
   end
 
   def create
@@ -49,6 +55,10 @@ class OrdersController < ApplicationController
     else
       render 'show'
     end
+  end
+
+  def add_list
+    @list = @order.lists.build
   end
 
   private

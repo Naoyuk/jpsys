@@ -1,2 +1,28 @@
-<h1>新しい注文を追加</h1>
-<%= render 'form' %>
+<div class="row">
+  <div class="col-md-2 order-header">
+    <h1>新しい注文を追加</h1>
+    <%= render 'form' %>
+  </div>
+
+  <div class="col-md-9 offset-md-1 order-list-items">
+    <%= link_to "Add New List", new_list_path, class: "btn btn-primary" %>
+    <table class="table table-sm table-hover">
+      <thead>
+      <th>品名</th>
+      <th>単価</th>
+      <th>数量</th>
+      <th>割引</th>
+      <th>小計</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><span class="bold"><%= @total %></span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

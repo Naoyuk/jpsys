@@ -8,11 +8,11 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
 
-    if @list.save
+    #if @list.save
       redirect_to order_path(@list.order_id)
-    else
-      render new
-    end
+    #else
+    #render 'orders/new'
+    #end
   end
 
   def update; end

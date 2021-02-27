@@ -1,5 +1,21 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: orders
+#
+#  id             :integer          not null, primary key
+#  order_number   :integer          not null
+#  customer_id    :integer          not null
+#  gst            :float
+#  pst            :float
+#  total          :float
+#  order_date     :date             not null
+#  payment_date   :date
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 class Order < ApplicationRecord
   validates :order_number, presence: true
   validates :order_date, presence: true
