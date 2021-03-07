@@ -1,52 +1,80 @@
-<%= form_with(model: @order, local: true) do |form| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@order.errors.count, "error") %>
-        以下のエラーによりSaveできませんでした:
-      </h2>
-      <ul>
-        <% @order.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+<p>これが新しい画面です</p>
+<div class="col-md-2 order-header">
+  <h1>新しい注文を追加</h1>
+  <%= form_with(model: @order, local: true) do |f| %>
+    <% if @order.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@order.errors.count, "error") %>
+          以下のエラーによりSaveできませんでした:
+        </h2>
+        <ul>
+          <% @order.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>ID: <%= @order.id %></p>
+
+    <p>
+      <%= f.label "受注番号" %><br>
+      <%= f.number_field :order_number, class: 'form-control' %>
+    </p>
+
+    <p>
+      <%= f.label "顧客名" %><br>
+      <%= f.collection_select :customer_id, f.object.selectable_customers, :id, :name, {}, class: 'form-control custom-select' %>
+    </p>
+
+    <p>
+      <%= f.label "受注日" %><br>
+      <%= f.date_field :order_date, class: 'form-control' %>
+    </p>
+
+    <p>
+      <%= f.label "支払日" %><br>
+      <%= f.date_field :payment_date, class: 'form-control' %>
+    </p>
+
+    <p>
+      <%= f.label "GST" %><br>
+      <%= f.number_field :gst, class: 'form-control' %>
+    </p>
+
+    <p>
+      <%= f.label "PST" %><br>
+      <%= f.number_field :pst, class: 'form-control' %>
+    </p>
+
+    <p>
+      <%= f.submit "Save", class: "form-control btn btn-primary" %>
+    </p>
   <% end %>
+  <%= link_to "Back", orders_path %>
+</div>
 
-  <p>ID: <%= @order.id %></p>
-
-  <p>
-    <%= form.label "受注番号" %><br>
-    <%= form.number_field :order_number %>
-  </p>
-
-  <p>
-    <%= form.label "顧客名" %><br>
-    <%= form.collection_select :customer_id, Customer.all, :id, :name, {:class=>'custom-select'} %>
-  </p>
-
-  <p>
-    <%= form.label "受注日" %><br>
-    <%= form.date_field :order_date %>
-  </p>
-
-  <p>
-    <%= form.label "支払日" %><br>
-    <%= form.date_field :payment_date %>
-  </p>
-
-  <p>
-    <%= form.label "GST" %><br>
-    <%= form.number_field :gst %>
-  </p>
-
-  <p>
-    <%= form.label "PST" %><br>
-    <%= form.number_field :pst %>
-  </p>
-
-  <p>
-    <%= form.submit "Save", class: "btn btn-primary" %>
-  </p>
-<% end %>
-<%= link_to "Back", orders_path %>
+<div class="col-md-9 offset-md-1 order-list-items">
+  <%= link_to_add_association "Add New Item", f, :lists, class: "btn btn-primary",
+      data: {
+        association_insertion_node: '#list-association',
+        association_insertion_method: 'append'}
+  %>
+  <table class="table table-sm table-hover">
+    <thead>
+    <th>品名</th>
+    <th>単価</th>
+    <th>数量</th>
+    <th>割引</th>
+    <th>小計</th>
+    </thead>
+    <tbody id='list-association'>
+      <div class='form-group'>
+        <%= f.fields_for :lists do |l| %>
+          <%= render 'list_fields', f: l %>
+        <% end %>
+      </div>
+    </tbody>
+  </table>
+</div>

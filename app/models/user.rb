@@ -9,12 +9,8 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
-t.string 'name'
-t.string 'email'
-t.datetime 'created_at', precision: 6, null: false
-t.datetime 'updated_at', precision: 6, null: false
-t.string 'password_digest'
-t.index ['email'], name: 'index_users_on_email', unique: true
+# index_users_on_email (email) UNIQUE
+#
 
 class User < ApplicationRecord
   # Not all of the databases use index for distinguishing upper cases and lower cases.

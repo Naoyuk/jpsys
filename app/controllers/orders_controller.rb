@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
+  before_action :set_order, only: [:edit, :update]
+
   def index
     @orders = Order.all.order(order_number: 'DESC')
     @total_sales = @orders.total_sales
@@ -15,45 +17,37 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
-    if Order.last
-      new_number = Order.last.order_number + 1
-    else
-      new_number =3001
-    end
-    @order.order_number = new_number
+    @order = Form::Order.new
+    @order.set_order_number
   end
 
   def create
-    @order = Order.new(order_params)
+    @order = Form::Order.new(order_params)
 
     if @order.save
       redirect_to orders_path
     else
-      render 'new'
+      render :new
     end
   end
 
-  def edit
-    @order = Order.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @order = Order.find(params[:id])
     @order.total = @order.total
     if @order.update(order_params)
       redirect_to orders_path
     else
-      render 'edit'
+      render :edit
     end
   end
 
   def destroy
-    @order = Order.find(params[:id])
+    @order = Form::Order.find(params[:id])
     if @order.destroy
       redirect_to orders_path
     else
-      render 'show'
+      render :show
     end
   end
 
@@ -63,7 +57,15 @@ class OrdersController < ApplicationController
 
   private
 
-  def order_params
-    params.require(:order).permit(:order_number, :customer_id, :order_date, :payment_date, :gst, :pst, :total)
-  end
+    def set_order
+      @order = Form::Order.find(params[:id])
+    end
+
+    def order_params
+      params
+        .require(:form_order)
+        .permit(REGISTRABLE_ATTRIBUTES + 
+                [lists_attributes: Form::List::REGISTRABLE_ATTRIBUTES]
+              )
+    end
 end

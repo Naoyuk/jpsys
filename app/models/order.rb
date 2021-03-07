@@ -23,9 +23,7 @@ class Order < ApplicationRecord
   belongs_to :customer, optional: true
   has_many :lists, dependent: :destroy
 
-  def total
-    lists.to_a.sum { |list| list.subtotal }
-  end
+  accepts_nested_attributes_for :lists, allow_destroy: true
 
   def self.total_sales
     orders = Order.all
@@ -34,5 +32,17 @@ class Order < ApplicationRecord
       sum += order.total
     end
     sum
+  end
+
+  def set_order_number
+    # if Order.last
+    #   new_number = Order.last.order_number + 1
+    # else
+    #   new_number =3001
+    # end
+  end
+
+  def total
+    lists.to_a.sum { |list| list.subtotal }
   end
 end

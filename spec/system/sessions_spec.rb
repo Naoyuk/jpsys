@@ -84,8 +84,11 @@ RSpec.describe 'Sessions', type: :system do
       click_link 'Log out'
       expect(page).to have_content 'Sign up'
       expect(page).to have_content 'Log in'
-      # TODO test if session is nil
+      # THINK
       # expect(!session[:user_id]).to be_falsy
+      # on system spec, you should recognize systems spec should be 
+      # UI test like using browser.
+      # And also you should write tests like about session in request specs.
     end
   end
 end

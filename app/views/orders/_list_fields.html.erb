@@ -1,0 +1,25 @@
+<tr class='nested-fields'>
+  <%= f.hidden_field :order_id, :value => @order.id %>
+  <td>
+    <%= f.label '品名' %><br>
+    <%= f.collection_select :item_id, f.object.selectable_items, :id, :name, {}, class: 'form-control custom-select' %>
+  </td>
+  <td>
+    <%= f.label '数量' %><br>
+    <%= f.number_field :amount, class: 'form-control' %>
+  </td>
+  <td>
+    <%= f.label '単価' %><br>
+    <%= list.items.price %>
+  </td>
+  <td>
+    <%= f.label "割引" %><br>
+    <%= f.number_field :discount, class: 'form-control' %>
+  </td>
+  <td>
+    <%= link_to_remove_association 'x', f, class: 'btn btn-default' %>
+  </td>
+</tr>
+
+
+
