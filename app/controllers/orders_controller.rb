@@ -17,33 +17,36 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Form::Order.new
+    @order = Order.new
     @order.set_order_number
+    2.times { @order.lists.build }
   end
 
   def create
-    @order = Form::Order.new(order_params)
+    @order = Order.new(order_params)
 
     if @order.save
-      redirect_to orders_path
+      redirect_to orders_path, notice: 'The order has been created.'
     else
       render :new
     end
   end
 
-  def edit; end
+  def edit
+    @form = Order.new(order: @order)
+  end
 
   def update
-    @order.total = @order.total
-    if @order.update(order_params)
-      redirect_to orders_path
+    @form = Order.new(order_params, order: @order)
+    if @form.save
+      redirect_to orders_path, notice: 'The order has been updated.'
     else
       render :edit
     end
   end
 
   def destroy
-    @order = Form::Order.find(params[:id])
+    @order = Order.find(params[:id])
     if @order.destroy
       redirect_to orders_path
     else
@@ -58,14 +61,12 @@ class OrdersController < ApplicationController
   private
 
     def set_order
-      @order = Form::Order.find(params[:id])
+      @order = Order.find(params[:id])
     end
 
     def order_params
       params
-        .require(:form_order)
-        .permit(REGISTRABLE_ATTRIBUTES + 
-                [lists_attributes: Form::List::REGISTRABLE_ATTRIBUTES]
-              )
+        .require(:order)
+        .permit(:order_number, :customer_id, :order_date, :payment_date, :gst, :pst, :total, lists_attributes: [:id, :order_id, :item_id, :amount, :list_price, :discount])
     end
 end

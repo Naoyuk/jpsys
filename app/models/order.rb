@@ -21,9 +21,14 @@ class Order < ApplicationRecord
   validates :order_date, presence: true
 
   belongs_to :customer, optional: true
-  has_many :lists, dependent: :destroy
+  has_many :lists, inverse_of: :order
+  # has_many :lists, dependent: :destroy
 
   accepts_nested_attributes_for :lists, allow_destroy: true
+
+  def selectable_customers
+    Customer.all
+  end
 
   def self.total_sales
     orders = Order.all
@@ -35,11 +40,11 @@ class Order < ApplicationRecord
   end
 
   def set_order_number
-    # if Order.last
-    #   new_number = Order.last.order_number + 1
-    # else
-    #   new_number =3001
-    # end
+    if Order.last
+      new_number = Order.last.order_number + 1
+    else
+      new_number =3001
+    end
   end
 
   def total

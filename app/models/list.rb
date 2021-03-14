@@ -27,4 +27,8 @@ class List < ApplicationRecord
   def subtotal
     item.price * amount - discount
   end
+
+  def selectable_items
+    Item.all
+  end
 end
