@@ -2,7 +2,7 @@
 
 class CustomersController < ApplicationController
   def index
-    @customers = Customer.all
+    @customers = Customer.all.order(:id)
   end
 
   def new

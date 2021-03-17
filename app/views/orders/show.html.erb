@@ -1,12 +1,30 @@
-<div class="row">
-  <div class="col-md-2 order-header">
-    <%= render 'form' %>
-    <div>
-      <button class="btn btn-danger"><%= link_to 'Delete', "/orders/#{@order.id}", method: :delete, data: {confirm: "Are you sure to delete this order?"} %></button>
+<%= form_with(model: @order, local: true) do |f| %>
+  <div class="row">
+    <div class="col-md-2">
+      <%= f.label "受注番号" %><br>
+      <%= f.number_field :order_number, class: 'form-control' %>
+    </div>
+
+    <div class="col-md-4">
+      <%= f.label "顧客名" %><br>
+      <%= f.collection_select :customer_id, f.object.selectable_customers, :id, :name, {}, class: 'form-control custom-select' %>
+    </div>
+
+    <div class="col-md-3">
+      <%= f.label "受注日" %><br>
+      <%= f.date_field :order_date, class: 'form-control' %>
+    </div>
+
+    <div class="col-md-3">
+      <%= f.label "支払日" %><br>
+      <%= f.date_field :payment_date, class: 'form-control' %>
     </div>
   </div>
+  <hr>
 
-  <div class="col-md-9 offset-md-1 order-list-items">
+<% end %>
+
+  <div class="row order-list-items">
     <%= link_to "Add New List", new_list_path(order_id: @order.id), class: "btn btn-primary" %>
     <table class="table table-sm table-hover">
       <thead>
@@ -35,5 +53,9 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div>
+    <button class="btn btn-danger"><%= link_to 'Delete', "/orders/#{@order.id}", method: :delete, data: {confirm: "Are you sure to delete this order?"} %></button>
   </div>
 </div>

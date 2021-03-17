@@ -27,7 +27,7 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :lists, allow_destroy: true
 
   def selectable_customers
-    Customer.all
+    Customer.all.order(:id)
   end
 
   def self.total_sales
@@ -39,15 +39,18 @@ class Order < ApplicationRecord
     sum
   end
 
-  def set_order_number
-    if Order.last
-      new_number = Order.last.order_number + 1
-    else
-      new_number =3001
-    end
-  end
-
   def total
     lists.to_a.sum { |list| list.subtotal }
   end
+
+  private
+
+    def self.set_order_number
+      if Order.last
+        new_number = Order.last.order_number + 1
+      else
+        new_number =3001
+      end
+      new_number
+    end
 end

@@ -4,15 +4,12 @@
     <%= f.collection_select :item_id, f.object.selectable_items, :id, :name, {}, class: 'form-control custom-select' %>
   </td>
   <td>
-    <%= f.number_field :amount, class: 'form-control' %>
+    <%= f.text_field :amount, class: 'form-control' %>
   </td>
   <td>
-    <%= f.number_field :discount, class: 'form-control' %>
+    <%= f.text_field :discount, class: 'form-control' %>
   </td>
   <td>
     <%= link_to_remove_association 'x', f, class: 'btn btn-default' %>
   </td>
 </tr>
-
-
-

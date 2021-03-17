@@ -18,7 +18,8 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @order.set_order_number
+    @order.order_number = Order.set_order_number
+    ActiveRecord::Base.connection.execute("SELECT setval('lists_id_seq', coalesce((SELECT MAX(id)+1 FROM lists), 1), false)")
     2.times { @order.lists.build }
   end
 
