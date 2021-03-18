@@ -19,10 +19,9 @@ RSpec.describe 'Orders', type: :system do
       visit new_order_path
       select 'Test', from: 'order_customer_id'
       fill_in 'order_payment_date', with: Date.today
-      click_link 'Add New List'
-      select 'test1', from: 'list_item_id'
-      fill_in 'list_amount', with: 1
-      fill_in 'list_discount', with: 5
+      select 'test1', from: 'order[lists_attributes][0][item_id]'
+      fill_in 'order[lists_attributes][0][amount]', with: 1
+      fill_in 'order[lists_attributes][0][discount]', with: 5
       click_button 'Save'
     end.to change(List, :count).by(1)
   end

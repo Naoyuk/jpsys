@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.order_number = Order.set_order_number
     ActiveRecord::Base.connection.execute("SELECT setval('lists_id_seq', coalesce((SELECT MAX(id)+1 FROM lists), 1), false)")
-    2.times { @order.lists.build }
+    @order.lists.build
   end
 
   def create
@@ -68,6 +68,7 @@ class OrdersController < ApplicationController
     def order_params
       params
         .require(:order)
-        .permit(:order_number, :customer_id, :order_date, :payment_date, :gst, :pst, :total, lists_attributes: [:id, :order_id, :item_id, :amount, :list_price, :discount])
+        .permit(:order_number, :customer_id, :order_date, :payment_date, :gst, :pst, :total,
+          lists_attributes: [:id, :order_id, :item_id, :amount, :list_price, :discount, :_destroy])
     end
 end
