@@ -15,28 +15,28 @@
 
   <div class="row">
     <div class="col-md-2">
-      <%= f.label "受注番号" %><br>
+      <%= f.label "Order Number" %><br>
       <%= f.number_field :order_number, class: 'form-control' %>
     </div>
 
     <div class="col-md-4">
-      <%= f.label "顧客名" %><br>
+      <%= f.label "Customer" %><br>
       <%= f.collection_select :customer_id, f.object.selectable_customers, :id, :name, {}, class: 'form-control custom-select' %>
     </div>
 
     <div class="col-md-3">
-      <%= f.label "受注日" %><br>
+      <%= f.label "Order Date" %><br>
       <%= f.date_field :order_date, class: 'form-control' %>
     </div>
 
     <div class="col-md-3">
-      <%= f.label "支払日" %><br>
+      <%= f.label "Payment Date" %><br>
       <%= f.date_field :payment_date, class: 'form-control' %>
     </div>
   </div>
-<hr>
 
   <div class="row list-item-nested-form">
+    <h3>Line Items</h3>
     <%= link_to_add_association "Add Item", f, :lists, class: "btn btn-primary add-list",
         data: {
           association_insertion_node: '#list-association',
@@ -44,10 +44,10 @@
     %>
     <table class="table table-sm table-hover orderTableHeader">
       <thead>
-        <th>品名</th>
-        <th>数量</th>
-        <th>割引</th>
-        <th>小計</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Discount</th>
+        <th>Sub Total</th>
       </thead>
       <tbody id='list-association'>
         <div class='form-group'>

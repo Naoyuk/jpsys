@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>JpGoodsTools</title>
+    <title>SDL2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,7 +15,7 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">JpGoodsTools</a>
+      <a class="navbar-brand" href="/">SDL2</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -23,19 +23,19 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item<%= active_nav_item("orders") %>">
-            <%= link_to "受注管理", orders_path, class: "nav-link" %>
+            <%= link_to "Orders", orders_path, class: "nav-link" %>
           </li>
           <li class="nav-item<%= active_nav_item("purchases") %>">
-            <%= link_to "発注管理", purchases_path, class: "nav-link" %>
+            <%= link_to "Purchases", purchases_path, class: "nav-link" %>
           </li>
           <li class="nav-item<%= active_nav_item("items") %>">
-            <%= link_to "商品管理", items_path, class: "nav-link" %>
+            <%= link_to "Item Master", items_path, class: "nav-link" %>
           </li>
           <li class="nav-item<%= active_nav_item("customers") %>">
-            <%= link_to "顧客管理", customers_path, class: "nav-link" %>
+            <%= link_to "Customer Master", customers_path, class: "nav-link" %>
           </li>
           <li class="nav-item<%= active_nav_item("suppliers") %>">
-            <%= link_to "仕入先管理", suppliers_path, class: "nav-link" %>
+            <%= link_to "Supplier Master", suppliers_path, class: "nav-link" %>
           </li>
           <% if logged_in? %>
           <li class="nav-item dropdown my-2 my-lg-0">
@@ -71,7 +71,7 @@
     </div>
 
     <footer>
-      <p>JpGoods Tools</p>
+      <p>SDL2</p>
     </footer>
     <%= debug(params) if Rails.env.development? %>
   </body>

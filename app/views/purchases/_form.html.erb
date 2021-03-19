@@ -17,21 +17,21 @@
 
     <div class="col-md-4">
       <p>
-        <%= f.label "仕入先" %><br>
+        <%= f.label "Supplier" %><br>
         <%= f.collection_select :supplier_id, Supplier.all, :id, :name, {:prompt=>"選択してください"}, {:class=>'form-control custom-select'} %>
       </p>
     </div>
 
     <div class="col-md-6">
       <p>
-        <%= f.label "商品名" %><br>
+        <%= f.label "Item" %><br>
         <%= f.text_field :item_name, class: "form-control" %>
       </p>
     </div>
 
     <div class="col-md-2">
       <p>
-        <%= f.label "個数" %><br>
+        <%= f.label "Quantity" %><br>
         <%= f.text_field :amount, class: "form-control" %>
       </p>
     </div>
@@ -40,7 +40,7 @@
   <div class="row group-devider">
     <div class="col-md-3">
       <p>
-        <%= f.label "合計(CAD)" %><br>
+        <%= f.label "Total(CAD)" %><br>
         <%= f.number_field :price, {:step=>"0.01", :class=>"form-control"} %>
       </p>
     </div>
@@ -61,7 +61,7 @@
 
     <div class="col-md-3">
       <p>
-        <%= f.label "為替レート（カナダドル ー 円）" %><br>
+        <%= f.label "Exchange Rate(CAD-JPY)" %><br>
         <%= f.number_field :exchangerate, {:step=>"0.01", :class=>"form-control"} %>
       </p>
     </div>
@@ -70,21 +70,21 @@
   <div class="row group-devider">
     <div class="col-md-3">
       <p>
-        <%= f.label "支払方法" %><br>
+        <%= f.label "Payment Method" %><br>
         <%= f.select :payment_method, ["PayPal(RBC)", "PayPal(楽天)", "TD Credit Card"], {:prompt=>"選択してください"}, {:class=>'form-control custom-select'} %>
       </p>
     </div>
 
     <div class="col-md-3">
       <p>
-        <%= f.label "発注日" %><br>
+        <%= f.label "Order Date" %><br>
         <%= f.date_field :order_date, class: "form-control" %>
       </p>
     </div>
 
     <div class="col-md-3">
       <p>
-        <%= f.label "支払日" %><br>
+        <%= f.label "Payment Date" %><br>
         <%= f.date_field :payment_date, class: "form-control" %>
       </p>
     </div>
@@ -92,7 +92,7 @@
 
   <div class="row group-devider-last">
     <p>
-      <%= f.label "備考" %><br>
+      <%= f.label "Note" %><br>
       <%= f.text_area :note, size: "200x10", class: "form-control" %>
     </p>
   </div>
