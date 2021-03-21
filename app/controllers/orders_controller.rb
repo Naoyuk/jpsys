@@ -2,6 +2,7 @@
 
 class OrdersController < ApplicationController
   before_action :set_order, only: [:edit, :update]
+  before_action :exchange_rate, only: [:new, :show]
 
   def index
     @orders = Order.all.order(order_number: 'DESC')
@@ -57,6 +58,13 @@ class OrdersController < ApplicationController
 
   def add_list
     @list = @order.lists.build
+  end
+
+  def exchange_rate
+    exchange_rates = Exchange.last(2)
+    rate = (exchange_rates[1].rate / exchange_rates[0].rate).round(2)
+    timestamp = exchange_rates[1].created_at.strftime("%d/%b/%Y %I:%M %p")
+    @exchange_rate = "#{rate} ( #{timestamp} )"
   end
 
   private

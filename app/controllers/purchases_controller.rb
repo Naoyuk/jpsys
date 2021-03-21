@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PurchasesController < ApplicationController
+  before_action :exchange_rate, only: [:new, :edit]
   def index
     @purchases = Purchase.all.order(created_at: 'DESC')
   end
@@ -32,6 +33,13 @@ class PurchasesController < ApplicationController
   end
 
   def destroy; end
+
+  def exchange_rate
+    exchange_rates = Exchange.last(2)
+    rate = (exchange_rates[1].rate / exchange_rates[0].rate).round(2)
+    timestamp = exchange_rates[1].created_at.strftime("%d/%b/%Y %I:%M %p")
+    @exchange_rate = "#{rate} ( #{timestamp} )"
+  end
 
   private
 

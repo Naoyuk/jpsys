@@ -17,5 +17,7 @@ module Jpsys
                        helper_specs: false,
                        routing_specs: false
     end
+
+    config.paths.add 'lib', eager_load: true
   end
 end
