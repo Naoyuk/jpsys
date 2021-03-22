@@ -7,7 +7,7 @@ class FetchRateJob < ApplicationJob
 
     base_uri = "https://openexchangerates.org/api/"
     api = "latest.json"
-    app_id = Rails.application.credentials.api_secret_key_base
+    app_id = Rails.application.credentials.open_exchange_rates[:api_secret_key_base]
     uri = base_uri + api + "?app_id=" + app_id
 
     response = open(uri)
@@ -22,6 +22,8 @@ class FetchRateJob < ApplicationJob
         
         Exchange.create(currency: 'CAD', rate: usd_cad)
         Exchange.create(currency: 'JPY', rate: usd_jpy)
+
+        logger = Logger.new 'log/fetch_rate.log'
     end
   end
 end
