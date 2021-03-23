@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
+    @duplicated_email = @user.email
   end
 
   it 'has a valid factory' do
@@ -24,10 +25,11 @@ RSpec.describe User, type: :model do
   end
 
   it 'is invalid with a duplicate email address' do
-    FactoryBot.create(:user, email: 'test1@example.com')
-    @user.email = 'test@example.com'
-    @user.valid?
-    expect(@user.errors[:email]).to include('has already been taken')
+    @user.save
+    dup_user = FactoryBot.build(:duplicated_user)
+    dup_user.email = @duplicated_email
+    dup_user.valid?
+    expect(dup_user.errors[:email]).to include('has already been taken')
   end
 
   it 'is invalid with a same but upcase or downcase' do
