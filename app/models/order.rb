@@ -21,8 +21,7 @@ class Order < ApplicationRecord
   validates :order_date, presence: true
 
   belongs_to :customer, optional: true
-  has_many :lists, inverse_of: :order
-  # has_many :lists, dependent: :destroy
+  has_many :lists, inverse_of: :order, dependent: :destroy
 
   accepts_nested_attributes_for :lists, reject_if: :all_blank, allow_destroy: true
 

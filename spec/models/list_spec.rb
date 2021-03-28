@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe List, type: :model do
   before do
     @customer = FactoryBot.create(:customer)
-    @item = FactoryBot.create(:item)
+    @item = FactoryBot.create(:item1)
     @order = @customer.orders.build
     @list = @order.lists.build
   end
