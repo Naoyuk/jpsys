@@ -23,6 +23,11 @@ RSpec.describe 'Sessions', type: :system do
       expect(page).to have_current_path root_path
       visit root_path
       expect(page).to_not have_content 'Successfully logged in!'
+      expect(page).to have_content 'Orders'
+      expect(page).to have_content 'Purchases'
+      expect(page).to have_content 'Item Master'
+      expect(page).to have_content 'Customer Master'
+      expect(page).to have_content 'Supplier Master'
       expect(page).to have_content 'Log out'
       expect(page).to_not have_content 'Sign up'
       expect(page).to_not have_content 'Log in'
@@ -40,12 +45,14 @@ RSpec.describe 'Sessions', type: :system do
     subject { page }
 
     it 'log in with invalid email address' do
-      expect(page).to have_content 'Invalid email/password combination'
-      # expect(page).to have_current_path '/login'
-      visit root_path
       expect(page).to_not have_content 'Invalid email/password combination'
       expect(page).to have_content 'Sign up'
       expect(page).to have_content 'Log in'
+      expect(page).to_not have_content 'Orders'
+      expect(page).to_not have_content 'Purchases'
+      expect(page).to_not have_content 'Item Master'
+      expect(page).to_not have_content 'Customer Master'
+      expect(page).to_not have_content 'Supplier Master'
       expect(page).to_not have_content 'Log out'
     end
   end
@@ -60,12 +67,14 @@ RSpec.describe 'Sessions', type: :system do
     subject { page }
 
     it 'log in with invalid password' do
-      expect(page).to have_content 'Invalid email/password combination'
-      # expect(page).to have_current_path '/login'
-      visit root_path
       expect(page).to_not have_content 'Invalid email/password combination'
       expect(page).to have_content 'Sign up'
       expect(page).to have_content 'Log in'
+      expect(page).to_not have_content 'Orders'
+      expect(page).to_not have_content 'Purchases'
+      expect(page).to_not have_content 'Item Master'
+      expect(page).to_not have_content 'Customer Master'
+      expect(page).to_not have_content 'Supplier Master'
       expect(page).to_not have_content 'Log out'
     end
   end
@@ -84,10 +93,15 @@ RSpec.describe 'Sessions', type: :system do
       click_link 'Log out'
       expect(page).to have_content 'Sign up'
       expect(page).to have_content 'Log in'
+      expect(page).to_not have_content 'Orders'
+      expect(page).to_not have_content 'Purchases'
+      expect(page).to_not have_content 'Item Master'
+      expect(page).to_not have_content 'Customer Master'
+      expect(page).to_not have_content 'Supplier Master'
+      expect(page).to_not have_content 'Log out'
       # THINK
       # expect(!session[:user_id]).to be_falsy
-      # on system spec, you should recognize systems spec should be 
-      # UI test like using browser.
+      # On system spec, you should recognize systems spec should be UI test like using browser.
       # And also you should write tests like about session in request specs.
     end
   end
