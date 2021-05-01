@@ -22,6 +22,7 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+          <% if logged_in? %>
           <li class="nav-item<%= active_nav_item("orders") %>">
             <%= link_to "Orders", orders_path, class: "nav-link" %>
           </li>
@@ -37,7 +38,6 @@
           <li class="nav-item<%= active_nav_item("suppliers") %>">
             <%= link_to "Supplier Master", suppliers_path, class: "nav-link" %>
           </li>
-          <% if logged_in? %>
           <li class="nav-item dropdown my-2 my-lg-0">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Account <b class="caret"></b>
