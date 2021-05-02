@@ -15,7 +15,7 @@
 
   <div class="row">
 
-    <div class="col-md-4">
+    <div class="col-md-3">
       <p>
         <%= f.label "Supplier" %><br>
         <%= f.collection_select :supplier_id, Supplier.all, :id, :name, {:prompt=>"選択してください"}, {:class=>'form-control custom-select'} %>
@@ -30,14 +30,7 @@
 
     <div class="col-md-2">
       <p>
-        <%= f.label "CAD" %><br>
-        <%= f.number_field :cad, {:step=>"0.01", :class=>"form-control"} %>
-      </p>
-    </div>
-
-    <div class="col-md-2">
-      <p>
-        <%= f.label "JPY" %><br>
+        <%= f.label "Total(JPY)" %><br>
         <%= f.number_field :jpy, class: "form-control" %>
       </p>
     </div>
@@ -48,16 +41,16 @@
         <%= f.number_field :exchangerate, {:step=>"0.01", :class=>"form-control"} %>
       </p>
     </div>
-  </div>
 
-  <div class="row">
     <div class="col-md-3">
       <p>
         <%= f.label "Payment Method" %><br>
         <%= f.select :payment_method, ["PayPal(RBC)", "PayPal(楽天)", "TD Credit Card"], {:prompt=>"選択してください"}, {:class=>'form-control custom-select'} %>
       </p>
     </div>
+  </div>
 
+  <div class="row">
     <div class="col-md-3">
       <p>
         <%= f.label "Order Date" %><br>

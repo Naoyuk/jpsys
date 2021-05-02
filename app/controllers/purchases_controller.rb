@@ -17,6 +17,9 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = Purchase.new(purchase_params)
+    @purchase.lines.each do |l|
+      @purchase.price += l.price
+    end
 
     if @purchase.save
       redirect_to purchases_path, notice: 'The purchase has been created.'
@@ -31,10 +34,11 @@ class PurchasesController < ApplicationController
 
   def update
     @purchase = Purchase.find(params[:id])
+
     if @purchase.update(purchase_params)
       redirect_to purchases_path
     else
-      render 'edit'
+      render :edit
     end
   end
 
