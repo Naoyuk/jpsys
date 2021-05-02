@@ -5,8 +5,8 @@ class OrdersController < ApplicationController
   before_action :exchange_rate, only: [:new, :show]
 
   def index
-    @orders = Order.all.order(order_number: 'DESC')
-    @total_sales = Order.total_sales
+    @orders = Order.includes([:lists ,:customer]).order(order_number: 'DESC')
+    @total_sales = Order.includes([:customer, lists: :item]).total_sales
     @total_purchase = Purchase.total_purchase
     @profit = BigDecimal(@total_sales.to_s) - BigDecimal(@total_purchase.to_s)
   end

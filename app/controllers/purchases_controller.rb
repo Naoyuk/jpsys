@@ -4,8 +4,8 @@ class PurchasesController < ApplicationController
   before_action :exchange_rate, only: [:new, :edit]
 
   def index
-    @purchases = Purchase.all.order(created_at: 'DESC')
-    @total_sales = Order.total_sales
+    @purchases = Purchase.includes(:supplier).order(created_at: 'DESC')
+    @total_sales = Order.includes([lists: :item]).total_sales
     @total_purchase = Purchase.total_purchase
     @profit = BigDecimal(@total_sales.to_s) - BigDecimal(@total_purchase.to_s)
   end
