@@ -1,0 +1,18 @@
+<tr class='nested-fields'>
+  <%= f.hidden_field :purchase_id, :value => @purchase.id %>
+  <td>
+    <%= f.text_field :title, class: 'form-control' %>
+  </td>
+  <td>
+    <%= f.text_field :price, class: 'form-control' %>
+  </td>
+  <td>
+    <%= f.text_field :quantity, class: 'form-control' %>
+  </td>
+  <td>
+    <%= f.text_field :discount, class: 'form-control' %>
+  </td>
+  <td>
+    <%= link_to_remove_association 'x', f, class: 'btn btn-default' %>
+  </td>
+</tr>

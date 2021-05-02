@@ -26,6 +26,8 @@ class Purchase < ApplicationRecord
   belongs_to :supplier
   has_many :lines
 
+  accepts_nested_attributes_for :lines, reject_if: :all_blank, allow_destroy: true
+
   def self.total_purchase
     sum(:price)
   end

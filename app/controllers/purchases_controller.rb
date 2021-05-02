@@ -2,6 +2,7 @@
 
 class PurchasesController < ApplicationController
   before_action :exchange_rate, only: [:new, :edit]
+
   def index
     @purchases = Purchase.all.order(created_at: 'DESC')
     @total_sales = Order.total_sales
@@ -11,14 +12,16 @@ class PurchasesController < ApplicationController
 
   def new
     @purchase = Purchase.new
+    @purchase.lines.build
   end
 
   def create
     @purchase = Purchase.new(purchase_params)
+
     if @purchase.save
-      redirect_to purchases_path
+      redirect_to purchases_path, notice: 'The purchase has been created.'
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -47,7 +50,10 @@ class PurchasesController < ApplicationController
   private
 
   def purchase_params
-    params.require(:purchase).permit(:supplier_id, :item_name, :amount, :price, :cad, :jpy, :payment_method, :note,
-                                     :order_date, :payment_date, :exchangerate)
+    params
+      .require(:purchase)
+      .permit(:supplier_id, :price, :cad, :jpy, :payment_method, :note, :order_date, :payment_date, :exchangerate,
+        lines_attributes: [:id, :purchase_id, :title, :price, :quantity, :discount, :_destroy])
   end
+
 end

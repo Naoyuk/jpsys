@@ -13,7 +13,7 @@
     </div>
   <% end %>
 
-  <div class="row group-devider">
+  <div class="row">
 
     <div class="col-md-4">
       <p>
@@ -21,53 +21,36 @@
         <%= f.collection_select :supplier_id, Supplier.all, :id, :name, {:prompt=>"選択してください"}, {:class=>'form-control custom-select'} %>
       </p>
     </div>
-
-    <div class="col-md-6">
-      <p>
-        <%= f.label "Item" %><br>
-        <%= f.text_field :item_name, class: "form-control" %>
-      </p>
-    </div>
-
     <div class="col-md-2">
-      <p>
-        <%= f.label "Quantity" %><br>
-        <%= f.text_field :amount, class: "form-control" %>
-      </p>
-    </div>
-  </div>
-
-  <div class="row group-devider">
-    <div class="col-md-3">
       <p>
         <%= f.label "Total(CAD)" %><br>
         <%= f.number_field :price, {:step=>"0.01", :class=>"form-control"} %>
       </p>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
       <p>
         <%= f.label "CAD" %><br>
         <%= f.number_field :cad, {:step=>"0.01", :class=>"form-control"} %>
       </p>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
       <p>
         <%= f.label "JPY" %><br>
         <%= f.number_field :jpy, class: "form-control" %>
       </p>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
       <p>
-        <%= f.label "Exchange Rate(CAD-JPY)" %><br>
+        <%= f.label "Exchange Rate" %><br>
         <%= f.number_field :exchangerate, {:step=>"0.01", :class=>"form-control"} %>
       </p>
     </div>
   </div>
 
-  <div class="row group-devider">
+  <div class="row">
     <div class="col-md-3">
       <p>
         <%= f.label "Payment Method" %><br>
@@ -90,11 +73,36 @@
     </div>
   </div>
 
-  <div class="row group-devider-last">
+  <div class="row">
     <p>
       <%= f.label "Note" %><br>
-      <%= f.text_area :note, size: "200x10", class: "form-control" %>
+      <%= f.text_area :note, size: "200x3", class: "form-control" %>
     </p>
+  </div>
+
+  <div class="row list-item-nested-form">
+    <h3>Line Items</h3>
+    <%= link_to_add_association "Add Line", f, :lines, class: "btn btn-primary add-list",
+        data: {
+          association_insertion_node: '#list-association',
+          association_insertion_method: 'append'}
+    %>
+    <table class="table table-sm table-hover puchaseTableHeader">
+      <thead>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Discount</th>
+        <th></th>
+      </thead>
+      <tbody id='list-association'>
+        <div class='form-group'>
+          <%= f.fields_for :lines do |l| %>
+            <%= render 'line_fields', f: l %>
+          <% end %>
+        </div>
+      </tbody>
+    </table>
   </div>
 
   <div class="row">
