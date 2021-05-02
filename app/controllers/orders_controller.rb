@@ -35,12 +35,12 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @form = Order.new(order: @order)
+    @order = Order.find(params[:id])
   end
 
   def update
-    @form = Order.new(order_params, order: @order)
-    if @form.save
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
       redirect_to orders_path, notice: 'The order has been updated.'
     else
       render :edit

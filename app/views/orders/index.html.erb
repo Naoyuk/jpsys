@@ -25,7 +25,7 @@
     <tbody>
       <% @orders.each do |order| %>
       <tr>
-        <td><%= link_to order.order_number, order %></td>
+        <td><%= link_to order.order_number, edit_order_path(order.id) %></td>
         <% begin %>
         <td><%= order.customer.name %></td>
         <% rescue %>
