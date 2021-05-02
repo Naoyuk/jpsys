@@ -1,5 +1,16 @@
-<div class="row add-button">
-  <%= link_to "Add New Purchase", new_purchase_path, {class: "btn btn-primary"} %>
+<div class="row purchaseTableHeader">
+  <div class="col-sm-3 add-button">
+    <%= link_to "Add New Purchase", new_purchase_path, {class: "btn btn-primary"} %>
+  </div>
+  <div class="col-sm-3">
+    <p>Sales<span>$<%= @total_sales %></span></p>
+  </div>
+  <div class="col-sm-3">
+    <p>Purchase<span class="red">$<%= @total_purchase %></span></p>
+  </div>
+  <div class="col-sm-3">
+    <p>Profit<span class="<%= 'red' if @profit < 0 %>">$<%= @profit %></span></p>
+  </div>
 </div>
 <div class="row">
   <table class="table table-hover">

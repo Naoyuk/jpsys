@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all.order(order_number: 'DESC')
-    @total_sales = @orders.total_sales
+    @total_sales = Order.total_sales
     @total_purchase = Purchase.total_purchase
     @profit = BigDecimal(@total_sales.to_s) - BigDecimal(@total_purchase.to_s)
   end
