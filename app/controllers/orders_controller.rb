@@ -26,6 +26,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.total = @order.total_price
 
     if @order.save
       redirect_to orders_path, notice: 'The order has been created.'
@@ -40,6 +41,7 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
+    @order.total = @order.total_price
     if @order.update(order_params)
       redirect_to orders_path, notice: 'The order has been updated.'
     else

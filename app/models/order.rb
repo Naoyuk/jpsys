@@ -33,12 +33,12 @@ class Order < ApplicationRecord
     orders = Order.all
     sum = 0
     orders.each do |order|
-      sum += order.total
+      sum += order.total_price
     end
     sum
   end
 
-  def total
+  def total_price
     lists.to_a.sum { |list| list.subtotal }
   end
 
