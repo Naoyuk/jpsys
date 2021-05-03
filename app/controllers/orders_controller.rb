@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.total = @order.total_price
-    if @order.update(order_params)
+    if @order.update(order_params) && @order.update(total: @order.total_price)
       redirect_to orders_path, notice: 'The order has been updated.'
     else
       render :edit
